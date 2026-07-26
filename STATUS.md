@@ -6,7 +6,7 @@
 |------|--------|-------------|
 | 0 | ✅ | Scaffold: dependencies, configs, folder skeleton |
 | 1 | ✅ | Design system: tokens + base components |
-| 2 | ⬜ | Data layer + renewal engine |
+| 2 | ✅ | Data layer + renewal engine |
 | 3 | ⬜ | Dashboard screen |
 | 4 | ⬜ | Add/edit flow |
 | 5 | ⬜ | Detail + cancel flow |
@@ -35,9 +35,25 @@
 - [x] TypeScript types for domain model
 - [x] Remote origin set to https://github.com/Anuragx456/renewal-radar.git
 
-### STEP 1 — Design system (not started)
+### STEP 1 — Design system (committed)
 
-### STEP 2 — Data layer + renewal engine (not started)
+**Deliverables:**
+- [x] Button component (3 variants, 3 sizes, loading state)
+- [x] Card component (default/elevated, pressable, header/body/footer)
+- [x] Input component (label, focus ring, error/hint, icons)
+- [x] Select component (modal-based bottom sheet picker)
+- [x] EmptyState component (icon, title, subtitle, action)
+- [x] SectionHeader component (title + action label)
+
+### STEP 2 — Data layer + renewal engine (committed)
+
+**Deliverables:**
+- [x] Pure renewal engine (40 unit tests): computeNextOccurrence, computeCancellationDeadline, getCancellationWindowStatus, normalizeToMonthly/Yearly, toISODate/fromISODate
+- [x] Month-end edge cases (Jan 31 → Feb 28/29), DST, leap years
+- [x] SQLite schema with migrations (subscriptions table + indexes)
+- [x] SubscriptionRepository: CRUD, markCanceled, getUpcomingRenewals, getActionNeeded, getRenewalsWithin60Days, getSpendSummary
+- [x] Dev seed script with 14 realistic sample items (Netflix, Spotify, Cult.fit, etc.)
+- [x] jest-expo compatible with Jest 29
 
 ### STEP 3 — Dashboard (not started)
 
