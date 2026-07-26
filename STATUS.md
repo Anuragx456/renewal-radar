@@ -10,7 +10,7 @@
 | 3 | ✅ | Dashboard screen |
 | 4 | ✅ | Add/edit flow |
 | 5 | ✅ | Detail + cancel flow |
-| 6 | ⬜ | Notifications |
+| 6 | ✅ | Notifications |
 | 7 | ⬜ | Settings + export + polish |
 
 ## Running log
@@ -97,6 +97,21 @@
 - [x] States: loading spinner, not found error, error with back button
 - [x] Canceled items show "Canceled" badge, cancel date, and Reactivate button
 
-### STEP 6 — Notifications (not started)
+### STEP 6 — Notifications (committed)
+
+**Deliverables:**
+- [x] Notification service (`src/services/notifications.ts`): setup, schedule, cancel, reschedule
+- [x] Foreground notification handler in `_layout.tsx`
+- [x] `scheduleCancellationReminder` — fires before cancellation deadline (default 3 days ahead)
+- [x] `scheduleRenewalReminder` — fires before next renewal (default 7 days ahead)
+- [x] `cancelItemNotifications` — removes all scheduled notifications for an item
+- [x] `rescheduleForItem` — cancel + reschedule for create/update/reactivate
+- [x] `rescheduleAll` — mass reschedule for lead-time setting changes
+- [x] Wired into add screen — schedules on create and update
+- [x] Wired into detail screen — cancels on cancel/delete, reschedules on reactivate
+- [x] Past-date notifications skipped automatically
+- [x] Notifications fire at 9 AM local time
+- [x] Permission request on first subscription create (non-blocking)
+- [x] Unique notification identifiers per item and type (`cancel-{id}`, `renew-{id}`)
 
 ### STEP 7 — Settings + export + polish (not started)
