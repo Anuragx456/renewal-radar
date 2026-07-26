@@ -57,6 +57,29 @@ async function runMigrations(database: SQLite.SQLiteDatabase): Promise<void> {
 
     await setVersion(database, 1);
   }
+
+  if (currentVersion < 2) {
+    await database.execAsync(`
+      CREATE TABLE IF NOT EXISTS settings (
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL
+      );
+    `);
+
+    // Default settings
+    await database.runAsync(
+      "INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)",
+      "cancellationReminderDays",
+      "3",
+    );
+    await database.runAsync(
+      "INSERT OR IGNORE INTO settings (key, value) VALUES (?, ?)",
+      "preRenewalReminderDays",
+      "7",
+    );
+
+    await setVersion(database, 2);
+  }
 }
 
 async function getCurrentVersion(database: SQLite.SQLiteDatabase): Promise<number> {

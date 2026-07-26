@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from "react";
 import {
   ActivityIndicator,
+  Pressable,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -42,6 +43,10 @@ export default function DashboardScreen() {
 
   const handleAddPress = useCallback(() => {
     router.push("/add");
+  }, [router]);
+
+  const handleSettingsPress = useCallback(() => {
+    router.push("/settings");
   }, [router]);
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -86,7 +91,18 @@ export default function DashboardScreen() {
         }
       >
         <Text style={styles.heading}>Renewal Radar</Text>
-        <Text style={styles.subheading}>Subscription tracker</Text>
+        <View style={styles.headerRow}>
+          <Text style={styles.subheading}>Subscription tracker</Text>
+          <Pressable
+            onPress={handleSettingsPress}
+            accessibilityRole="button"
+            accessibilityLabel="Settings"
+            hitSlop={8}
+            style={styles.settingsButton}
+          >
+            <Text style={styles.settingsIcon}>⚙️</Text>
+          </Pressable>
+        </View>
 
         <SpendSummary
           monthlyTotal={monthlyTotal}
@@ -134,7 +150,19 @@ const styles = StyleSheet.create({
     ...typography.body,
     color: colors.textSecondary,
     paddingHorizontal: spacing.lg,
+  },
+  headerRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingRight: spacing.lg,
     marginBottom: spacing.xl,
+  },
+  settingsButton: {
+    padding: spacing.xs,
+  },
+  settingsIcon: {
+    fontSize: 20,
   },
   loadingContainer: {
     flex: 1,
