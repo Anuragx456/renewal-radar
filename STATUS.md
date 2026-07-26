@@ -11,7 +11,7 @@
 | 4 | ✅ | Add/edit flow |
 | 5 | ✅ | Detail + cancel flow |
 | 6 | ✅ | Notifications |
-| 7 | ⬜ | Settings + export + polish |
+| 7 | ✅ | Settings + export + polish |
 
 ## Running log
 
@@ -114,4 +114,17 @@
 - [x] Permission request on first subscription create (non-blocking)
 - [x] Unique notification identifiers per item and type (`cancel-{id}`, `renew-{id}`)
 
-### STEP 7 — Settings + export + polish (not started)
+### STEP 7 — Settings + export + polish (committed)
+
+**Deliverables:**
+- [x] Settings screen (`src/app/settings.tsx`) with notification lead-time controls
+- [x] Cancellation window reminder days input (default 3)
+- [x] Pre-renewal reminder days input (default 7)
+- [x] Save + reschedule all notifications with new lead times
+- [x] Reset to defaults button with confirmation dialog
+- [x] JSON export — writes to cache via `expo-file-system` (File/Paths API), shares via `expo-sharing`
+- [x] Database migration v2: settings table (key/value)
+- [x] Zustand settings store backed by SQLite
+- [x] Dashboard: gear icon ⚙️ navigates to /settings
+- [x] About card: app version, on-device data, no-account info
+- [x] All checks pass: tsc, eslint, 40 jest tests
