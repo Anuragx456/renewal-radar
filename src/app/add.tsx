@@ -15,6 +15,7 @@ import {
   toISODate,
 } from "@/lib/renewal";
 import { formatCurrency } from "@/lib/format";
+import { rescheduleForItem, requestNotificationPermissions } from "@/services/notifications";
 import type { BillingCycle, SubscriptionCategory } from "@/types";
 
 // ── Constants ──
@@ -269,13 +270,25 @@ export default function AddSubscriptionScreen() {
       };
 
       if (isEdit && id) {
-        await subscriptionRepository.update(id, baseFields);
+        const updated = await subscriptionRepository.update(id, baseFields);
+        if (updated) {
+          await rescheduleForItem(updated).catch(() => {
+            /* silent */
+          });
+        }
       } else {
-        await subscriptionRepository.create({
+        const savedItem = await subscriptionRepository.create({
           ...baseFields,
           id: crypto.randomUUID(),
           isCanceled: false,
           canceledAt: null,
+        });
+        // Request permissions on first create (non-blocking if denied)
+        await requestNotificationPermissions().catch(() => {
+          /* silent */
+        });
+        await rescheduleForItem(savedItem).catch(() => {
+          /* silent */
         });
       }
 

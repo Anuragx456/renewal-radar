@@ -23,6 +23,11 @@ import {
   formatRelativeDate,
   getCancellationLabel,
 } from "@/lib/format";
+import {
+  rescheduleForItem,
+  cancelItemNotifications,
+  requestNotificationPermissions,
+} from "@/services/notifications";
 import type { SubscriptionItem } from "@/types";
 
 export default function ItemDetailScreen() {
@@ -91,8 +96,23 @@ export default function ItemDetailScreen() {
                 isCanceled: false,
                 canceledAt: null,
               });
+              await requestNotificationPermissions().catch(() => {
+                /* silent */
+              });
+              if (item) {
+                await rescheduleForItem({
+                  ...item,
+                  isCanceled: false,
+                  canceledAt: null,
+                }).catch(() => {
+                  /* silent */
+                });
+              }
             } else {
               await subscriptionRepository.markCanceled(item.id);
+              await cancelItemNotifications(item.id).catch(() => {
+                /* silent */
+              });
             }
             await loadItem();
           } catch {
@@ -122,6 +142,9 @@ export default function ItemDetailScreen() {
           onPress: async () => {
             setIsDeleting(true);
             try {
+              await cancelItemNotifications(item.id).catch(() => {
+                /* silent */
+              });
               await subscriptionRepository.delete(item.id);
               router.back();
             } catch {
