@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "renewalradar",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
       "icon": "./assets/expo.icon"
     },
@@ -34,7 +34,10 @@
             "imageWidth": 76
           }
         }
-      ]
+      ],
+      "expo-sqlite",
+      "expo-notifications",
+      "expo-sharing"
     ],
     "experiments": {
       "typedRoutes": true,
