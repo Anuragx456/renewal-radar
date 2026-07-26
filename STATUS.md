@@ -9,7 +9,7 @@
 | 2 | ✅ | Data layer + renewal engine |
 | 3 | ✅ | Dashboard screen |
 | 4 | ✅ | Add/edit flow |
-| 5 | ⬜ | Detail + cancel flow |
+| 5 | ✅ | Detail + cancel flow |
 | 6 | ⬜ | Notifications |
 | 7 | ⬜ | Settings + export + polish |
 
@@ -81,7 +81,21 @@
 - [x] States: loading (edit prefetch), saving spinner, validation errors inline, save error alert
 - [x] Navigation: header title switches between "Add" / "Edit", save navigates back on success
 
-### STEP 5 — Detail + cancel flow (not started)
+### STEP 5 — Detail + cancel flow (committed)
+
+**Deliverables:**
+- [x] Detail screen (`src/app/item/[id].tsx`) with all subscription info
+- [x] Large amount display with per-cycle label
+- [x] Info card: provider, category, billing cycle, currency, renewal dates, following renewal
+- [x] Cancellation window card with color-coded left border (red/orange/green) and status badge
+- [x] Deadline countdown hint — days remaining or "deadline passed" warning
+- [x] Cancel/Reactivate with confirmation Alert dialog (soft-delete via `isCanceled`)
+- [x] Delete permanently with destructive confirmation Alert
+- [x] Edit navigates to `/add?id=` for pre-filled editing
+- [x] URL linking via `Linking.openURL` with error fallback
+- [x] Timeline card showing created/updated/canceled dates
+- [x] States: loading spinner, not found error, error with back button
+- [x] Canceled items show "Canceled" badge, cancel date, and Reactivate button
 
 ### STEP 6 — Notifications (not started)
 
