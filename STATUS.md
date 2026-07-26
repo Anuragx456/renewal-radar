@@ -5,7 +5,7 @@
 | Step | Status | Description |
 |------|--------|-------------|
 | 0 | ✅ | Scaffold: dependencies, configs, folder skeleton |
-| 1 | ⬜ | Design system: tokens + base components |
+| 1 | ✅ | Design system: tokens + base components |
 | 2 | ⬜ | Data layer + renewal engine |
 | 3 | ⬜ | Dashboard screen |
 | 4 | ⬜ | Add/edit flow |
