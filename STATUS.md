@@ -8,7 +8,7 @@
 | 1 | ✅ | Design system: tokens + base components |
 | 2 | ✅ | Data layer + renewal engine |
 | 3 | ✅ | Dashboard screen |
-| 4 | ⬜ | Add/edit flow |
+| 4 | ✅ | Add/edit flow |
 | 5 | ⬜ | Detail + cancel flow |
 | 6 | ⬜ | Notifications |
 | 7 | ⬜ | Settings + export + polish |
@@ -67,7 +67,19 @@
 - [x] format utility (currency, relative dates, category labels)
 - [x] Loading, error, and empty states for every section
 
-### STEP 4 — Add/edit flow (not started)
+### STEP 4 — Add/edit flow (committed)
+
+**Deliverables:**
+- [x] Add subscription form (`src/app/add.tsx`) with full field set: name, provider, amount, currency, category, billing cycle, custom cycle days, next renewal date, cancellation notice period, notes, URL
+- [x] Live preview card — dynamically shows next renewal date, cancellation deadline (with status color), and normalized monthly cost
+- [x] Currency picker with 14 common currencies (INR default)
+- [x] Category picker (14 subscription categories)
+- [x] Billing cycle picker (weekly/monthly/quarterly/yearly/custom) with conditional custom days input
+- [x] Cancellation notice period presets (0/1/3/7/14/30/60/90 days)
+- [x] Edit mode via optional `?id=` search param — loads existing item, pre-fills form, saves as update
+- [x] Form validation: required fields, positive amount, valid YYYY-MM-DD date, URL format check
+- [x] States: loading (edit prefetch), saving spinner, validation errors inline, save error alert
+- [x] Navigation: header title switches between "Add" / "Edit", save navigates back on success
 
 ### STEP 5 — Detail + cancel flow (not started)
 
